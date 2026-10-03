@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Générateur Free Fire Pro</title>
-    <!-- Collez la ligne complète juste ici : -->
+    <!-- Ta balise Monetag officielle est maintenant soudée ici -->
     <meta name="monetag" content="1bb6f905391da745c7b5b811fe818b82" />
     <style>
-
         /* Thème Global Gaming Sombre */
         body { 
             background-color: #0c0c0e; 
@@ -161,16 +160,17 @@
 </head>
 <body>
 <div class="container">
-<!-- ==================== PAGE 1 & 2 : INTERFACE & GÉNÉRATEUR ==================== -->
-<!-- Contient les blocs d'authentification (connexion/inscription), l'affichage des jetons, la zone vidéo, le rechargement via publicité et le sélecteur complet des marques de smartphones (Apple, Samsung, Xiaomi, POCO, Asus, etc.). Affiche également la zone d'attente animée, les résultats de sensibilité (Général, Point Rouge, Scopes, DPI) et le panneau de contrôle administrateur masqué. -->
+<!-- ==================== PAGE 1 : CONNEXION / INSCRIPTION ==================== -->
 <div id="auth-page">
     <h1 onclick="detectAdminClick()">FLEX GENERATOR</h1>
     <p style="text-align:center; color:#aaa; font-size:13px; margin-bottom:20px;">Crée ton pseudo ou connecte-toi pour obtenir tes réglages</p>
+    
     <div style="background: #1a1a22; padding: 15px; border-radius: 8px; border: 1px solid #333;">
         <h4 style="margin: 0 0 10px 0; color: #ff4a00; font-size: 14px;">👤 SE CONNECTER À UN COMPTE</h4>
         <input type="text" id="user-login-name" placeholder="Entre ton Pseudo de joueur">
         <input type="password" id="user-pass" placeholder="Mot de passe du compte">
         <button onclick="loginUser()" style="background:#333; margin-bottom: 15px;">Se Connecter</button>
+        
         <div style="border-top: 1px solid #2d2d33; padding-top: 15px; margin-top:10px;">
             <h4 style="margin: 0 0 10px 0; color: #ff4a00; font-size: 14px;">🆕 REJOINDRE & CRÉER UN PSEUDO</h4>
             <input type="text" id="new-name" placeholder="Choisis ton Pseudo de joueur">
@@ -180,39 +180,58 @@
     </div>
 </div>
 
+<!-- ==================== PAGE 2 : LE GÉNÉRATEUR PRIVÉ ==================== -->
 <div id="generator-page">
     <div class="header-row">
         <h1 onclick="detectAdminClick()" style="margin:0; text-align:left;">SENSI GENERATOR</h1>
         <div class="token-badge">Jetons : <span id="token-count">0 💎</span></div>
     </div>
+    
     <p style="text-align:center; color:#aaa; font-size:13px; margin-bottom:15px;">Joueur : <span id="user-display" style="color:#00ff66; font-weight:bold;">-</span></p>
+
+    <!-- Zone Vidéo Intégrée (15 secondes) -->
     <div class="video-box">
         <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;">
             <source src="https://w3schools.com" type="video/mp4">
             Votre navigateur ne supporte pas les vidéos.
         </video>
     </div>
+
+    <!-- Zone de rechargement de jetons exclusive aux Publicités -->
     <div style="background: #1a1a22; padding: 12px; border-radius: 8px; border: 1px dashed #ff4a00; margin-bottom: 15px; text-align: center;">
         <h4 style="margin: 0 0 10px 0; color: #ff4a00; font-size: 13px;">💎 OBTENIR DES DIAMANTS GRATUITEMENT</h4>
         <button id="ad-btn" onclick="watchAdReward()" style="background: #222; border: 1px solid #00ff66; color: #00ff66; font-size: 13px; padding: 10px; width: 100%;">
             Regarder une Publicité (+1 💎)
         </button>
     </div>
+
+    <!-- Formulaire de Sélection -->
     <label style="font-size:12px; color:#ccc; display:block; margin-bottom:5px;">Modèle de ton smartphone :</label>
     <select id="brand">
         <option value="iphone">Apple (iPhone)</option>
         <option value="samsung">Samsung</option>
         <option value="xiaomi">Xiaomi / Redmi</option>
         <option value="poco">POCO</option>
+        <option value="infinix">Infinix</option>
+        <option value="tecno">Tecno</option>
+        <option value="oppo">Oppo</option>
+        <option value="realme">Realme</option>
+        <option value="vivo">Vivo</option>
+        <option value="iqoo">iQOO</option>
         <option value="other">Etc. (Plus de 40 marques disponibles)</option>
     </select>
+
     <button id="gen-btn" onclick="startGeneration()">Générer ma Sensibilité (1 💎)</button>
     <button onclick="logout()" style="background:#333; font-size:11px; padding:6px; margin-top:10px; width:auto; float:right;">Se déconnecter 🚪</button>
     <div style="clear:both;"></div>
+
+    <!-- Zone d'attente animée de 30 secondes -->
     <div id="loading" class="loading-box">
         <span id="loading-text" style="color: #ff4a00; font-weight: bold; font-size:14px;">Analyse tactile de l'écran...</span>
         <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
     </div>
+
+    <!-- Zone d'affichage des Résultats -->
     <div id="results" class="results-box">
         <h3 style="margin:0 0 10px 0; color:#00ff66; font-size:15px; text-align:center;">CONFIGURATION SÉCURISÉE !</h3>
         <div class="stat-row"><span>Général :</span><span class="stat-value" id="v-general">0</span></div>
@@ -224,14 +243,22 @@
     </div>
 </div>
 
+<!-- ==================== ECOSYSTEME ADMINISTRATEUR (MASQUÉ) ==================== -->
 <div id="admin-panel" class="admin-box">
     <h3 style="margin:0 0 10px 0; color:#ff4a00; font-size:14px;">🛠️ Panneau de Contrôle Admin</h3>
+    <p style="font-weight:bold; font-size:11px; margin:0 0 5px 0; color:#aaa;">🔋 Liste des comptes & Gestion des utilisateurs :</p>
     <select id="admin-user-select" style="padding:6px;"></select>
+    
     <div style="margin-top: 10px;">
         <button onclick="addTokens()" style="font-size:11px; padding:6px; width:auto;">Ajouter 💎</button>
         <button onclick="banUser()" style="background:#cc0000; font-size:11px; padding:6px; width:auto; margin-left:5px;">Bannir 🚫</button>
         <button onclick="unbanUser()" style="background:#00ff66; color:#000; font-size:11px; padding:6px; width:auto; margin-left:5px;">Débannir ✅</button>
     </div>
+    
+    <div style="margin-top:15px; border-top:1px solid #444; padding-top:10px; text-align:right;">
+        <button onclick="document.getElementById('admin-panel').style.display='none'" style="background:#444; font-size:11px; padding:6px; width:auto;">Fermer</button>
+    </div>
+</div>
 </div>
 <!-- ==================== ECOSYSTEME JAVASCRIPT LOGIQUE ==================== -->
 <script>
@@ -333,7 +360,7 @@ function logout() {
     document.getElementById('results').style.display = 'none';
 }
 
-// Détection de l'accès secret au panneau d'administration (3 clics)
+// Détection de l'accès secret au panneau d'administration (3 clics sur le titre de la page de connexion)
 function detectAdminClick() {
     adminClicks++;
     if (adminClicks === 3) {
@@ -348,6 +375,7 @@ function detectAdminClick() {
 // Ajout manuel de diamants par l'administrateur
 function addTokens() {
     let id = document.getElementById('admin-user-select').value;
+    if (!id) return alert("❌ Aucun compte sélectionné !");
     let amt = parseInt(prompt("Nombre de diamants à attribuer :")) || 0;
     let user = database.find(u => u.id === id);
     if(user) { 
@@ -452,4 +480,3 @@ window.onload = updateUi;
 </div>
 </body>
 </html>
-tml>
