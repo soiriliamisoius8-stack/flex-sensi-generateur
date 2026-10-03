@@ -4,36 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Générateur Free Fire Pro</title>
-    <!-- Ta balise Monetag officielle est maintenant soudée ici -->
-    <meta name="monetag" content="1bb6f905391da745c7b5b811fe818b82" />
+
     <style>
         /* Thème Global Gaming Sombre */
-        body { 
-            background-color: #0c0c0e; 
-            color: #ffffff; 
-            font-family: 'Segoe UI', sans-serif; 
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
+        body {
+            background-color: #0c0c0e;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
         }
-        .container { 
-            background-color: #151518; 
-            border: 2px solid #ff4a00; 
-            border-radius: 12px; 
-            padding: 20px; 
-            width: 100%; 
-            max-width: 450px; 
-            box-shadow: 0 8px 32px rgba(255, 74, 0, 0.2); 
+        .container {
+            background-color: #151518;
+            border: 2px solid #ff4a00;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 8px 32px rgba(255, 74, 0, 0.2);
         }
-        h1 { 
-            text-align: center; 
-            color: #ff4a00; 
-            text-transform: uppercase; 
-            cursor: pointer; 
-            margin-bottom: 5px; 
+        h1 {
+            text-align: center;
+            color: #ff4a00;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-bottom: 5px;
             letter-spacing: 1px;
         }
         .header-row {
@@ -42,135 +41,136 @@
             align-items: center;
             margin-bottom: 15px;
         }
-        .token-badge { 
-            background: #222; 
-            border: 1px solid #ff4a00; 
-            color: #ff4a00; 
-            padding: 4px 12px; 
-            border-radius: 20px; 
-            font-weight: bold; 
+        .token-badge {
+            background: #222;
+            border: 1px solid #ff4a00;
+            color: #ff4a00;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
             font-size: 13px;
             white-space: nowrap;
         }
-        .video-box { 
-            width: 100%; 
-            height: 160px; 
-            background: #000; 
-            border-radius: 8px; 
-            margin-bottom: 15px; 
-            overflow: hidden; 
-            border: 1px solid #333; 
+        .video-box {
+            width: 100%;
+            height: 160px;
+            background: #000;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #333;
         }
-        select, input { 
-            width: 100%; 
-            padding: 11px; 
-            background: #202024; 
-            border: 1px solid #444; 
-            border-radius: 6px; 
-            color: #fff; 
-            margin-bottom: 12px; 
-            box-sizing: border-box; 
+        select, input {
+            width: 100%;
+            padding: 11px;
+            background: #202024;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            margin-bottom: 12px;
+            box-sizing: border-box;
             outline: none;
         }
         select:focus, input:focus {
             border-color: #ff4a00;
         }
-        button { 
-            width: 100%; 
-            padding: 12px; 
-            background: #ff4a00; 
-            color: #fff; 
-            border: none; 
-            border-radius: 6px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            text-transform: uppercase; 
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #ff4a00;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
             transition: 0.2s;
         }
         button:hover {
             background: #e04100;
         }
-        button:disabled { 
-            background: #444; 
+        button:disabled {
+            background: #444;
             color: #aaa;
             cursor: not-allowed;
         }
-        
-        /* Architecture des Pages Virtuelles */
+
+        /* Pages virtuelles */
         #auth-page { display: block; }
         #generator-page { display: none; }
-        
+
         /* Boîte d'attente animée */
-        .loading-box { 
-            display: none; 
-            text-align: center; 
+        .loading-box {
+            display: none;
+            text-align: center;
             margin-top: 15px;
-            background: #1a1a22; 
-            padding: 15px; 
-            border-radius: 8px; 
+            background: #1a1a22;
+            padding: 15px;
+            border-radius: 8px;
             border: 1px solid #2d2d33;
         }
-        .progress-bar { 
-            width: 100%; 
-            background: #111; 
-            border-radius: 10px; 
-            height: 12px; 
-            margin-top: 12px; 
-            overflow: hidden; 
-            border: 1px solid #444; 
+        .progress-bar {
+            width: 100%;
+            background: #111;
+            border-radius: 10px;
+            height: 12px;
+            margin-top: 12px;
+            overflow: hidden;
+            border: 1px solid #444;
         }
-        .progress-fill { 
-            width: 0%; 
-            height: 100%; 
-            background-color: #ff4a00; 
-            transition: width 0.1s linear; 
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #ff4a00;
+            transition: width 0.1s linear;
         }
-        
-        /* Affichage des Résultats */
-        .results-box { 
-            margin-top: 15px; 
-            background: #1c1c22; 
-            border-radius: 8px; 
-            padding: 15px; 
-            display: none; 
-            border-left: 4px solid #ff4a00; 
+
+        /* Résultats */
+        .results-box {
+            margin-top: 15px;
+            background: #1c1c22;
+            border-radius: 8px;
+            padding: 15px;
+            display: none;
+            border-left: 4px solid #ff4a00;
         }
-        .stat-row { 
-            display: flex; 
-            justify-content: space-between; 
-            padding: 8px 0; 
-            border-bottom: 1px solid #2d2d33; 
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #2d2d33;
         }
         .stat-row:last-child {
             border-bottom: none;
         }
-        .stat-value { 
-            font-weight: bold; 
-            color: #00ff66; 
+        .stat-value {
+            font-weight: bold;
+            color: #00ff66;
         }
-        .admin-box { 
-            margin-top: 15px; 
-            background: #29140c; 
-            border: 1px dashed #ff4a00; 
-            border-radius: 8px; 
-            padding: 15px; 
-            display: none; 
+        .admin-box {
+            margin-top: 15px;
+            background: #29140c;
+            border: 1px dashed #ff4a00;
+            border-radius: 8px;
+            padding: 15px;
+            display: none;
         }
     </style>
 </head>
 <body>
 <div class="container">
+
 <!-- ==================== PAGE 1 : CONNEXION / INSCRIPTION ==================== -->
 <div id="auth-page">
     <h1 onclick="detectAdminClick()">FLEX GENERATOR</h1>
     <p style="text-align:center; color:#aaa; font-size:13px; margin-bottom:20px;">Crée ton pseudo ou connecte-toi pour obtenir tes réglages</p>
-    
+
     <div style="background: #1a1a22; padding: 15px; border-radius: 8px; border: 1px solid #333;">
         <h4 style="margin: 0 0 10px 0; color: #ff4a00; font-size: 14px;">👤 SE CONNECTER À UN COMPTE</h4>
         <input type="text" id="user-login-name" placeholder="Entre ton Pseudo de joueur">
         <input type="password" id="user-pass" placeholder="Mot de passe du compte">
         <button onclick="loginUser()" style="background:#333; margin-bottom: 15px;">Se Connecter</button>
-        
+
         <div style="border-top: 1px solid #2d2d33; padding-top: 15px; margin-top:10px;">
             <h4 style="margin: 0 0 10px 0; color: #ff4a00; font-size: 14px;">🆕 REJOINDRE & CRÉER UN PSEUDO</h4>
             <input type="text" id="new-name" placeholder="Choisis ton Pseudo de joueur">
@@ -180,32 +180,24 @@
     </div>
 </div>
 
-<!-- ==================== PAGE 2 : LE GÉNÉRATEUR PRIVÉ ==================== -->
+<!-- ==================== PAGE 2 : LE GÉNÉRATEUR ==================== -->
 <div id="generator-page">
     <div class="header-row">
         <h1 onclick="detectAdminClick()" style="margin:0; text-align:left;">SENSI GENERATOR</h1>
         <div class="token-badge">Jetons : <span id="token-count">0 💎</span></div>
     </div>
-    
+
     <p style="text-align:center; color:#aaa; font-size:13px; margin-bottom:15px;">Joueur : <span id="user-display" style="color:#00ff66; font-weight:bold;">-</span></p>
 
-    <!-- Zone Vidéo Intégrée (15 secondes) -->
+    <!-- Zone vidéo -->
     <div class="video-box">
         <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;">
-            <source src="https://w3schools.com" type="video/mp4">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
             Votre navigateur ne supporte pas les vidéos.
         </video>
     </div>
 
-    <!-- Zone de rechargement de jetons exclusive aux Publicités -->
-    <div style="background: #1a1a22; padding: 12px; border-radius: 8px; border: 1px dashed #ff4a00; margin-bottom: 15px; text-align: center;">
-        <h4 style="margin: 0 0 10px 0; color: #ff4a00; font-size: 13px;">💎 OBTENIR DES DIAMANTS GRATUITEMENT</h4>
-        <button id="ad-btn" onclick="watchAdReward()" style="background: #222; border: 1px solid #00ff66; color: #00ff66; font-size: 13px; padding: 10px; width: 100%;">
-            Regarder une Publicité (+1 💎)
-        </button>
-    </div>
-
-    <!-- Formulaire de Sélection -->
+    <!-- Formulaire de sélection -->
     <label style="font-size:12px; color:#ccc; display:block; margin-bottom:5px;">Modèle de ton smartphone :</label>
     <select id="brand">
         <option value="iphone">Apple (iPhone)</option>
@@ -225,13 +217,13 @@
     <button onclick="logout()" style="background:#333; font-size:11px; padding:6px; margin-top:10px; width:auto; float:right;">Se déconnecter 🚪</button>
     <div style="clear:both;"></div>
 
-    <!-- Zone d'attente animée de 30 secondes -->
+    <!-- Attente animée de 30 secondes -->
     <div id="loading" class="loading-box">
         <span id="loading-text" style="color: #ff4a00; font-weight: bold; font-size:14px;">Analyse tactile de l'écran...</span>
         <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
     </div>
 
-    <!-- Zone d'affichage des Résultats -->
+    <!-- Résultats -->
     <div id="results" class="results-box">
         <h3 style="margin:0 0 10px 0; color:#00ff66; font-size:15px; text-align:center;">CONFIGURATION SÉCURISÉE !</h3>
         <div class="stat-row"><span>Général :</span><span class="stat-value" id="v-general">0</span></div>
@@ -243,51 +235,61 @@
     </div>
 </div>
 
-<!-- ==================== ECOSYSTEME ADMINISTRATEUR (MASQUÉ) ==================== -->
+<!-- ==================== PANNEAU ADMIN (MASQUÉ) ==================== -->
 <div id="admin-panel" class="admin-box">
     <h3 style="margin:0 0 10px 0; color:#ff4a00; font-size:14px;">🛠️ Panneau de Contrôle Admin</h3>
     <p style="font-weight:bold; font-size:11px; margin:0 0 5px 0; color:#aaa;">🔋 Liste des comptes & Gestion des utilisateurs :</p>
     <select id="admin-user-select" style="padding:6px;"></select>
-    
+
     <div style="margin-top: 10px;">
         <button onclick="addTokens()" style="font-size:11px; padding:6px; width:auto;">Ajouter 💎</button>
         <button onclick="banUser()" style="background:#cc0000; font-size:11px; padding:6px; width:auto; margin-left:5px;">Bannir 🚫</button>
         <button onclick="unbanUser()" style="background:#00ff66; color:#000; font-size:11px; padding:6px; width:auto; margin-left:5px;">Débannir ✅</button>
     </div>
-    
+
     <div style="margin-top:15px; border-top:1px solid #444; padding-top:10px; text-align:right;">
         <button onclick="document.getElementById('admin-panel').style.display='none'" style="background:#444; font-size:11px; padding:6px; width:auto;">Fermer</button>
     </div>
 </div>
-</div>
-<!-- ==================== ECOSYSTEME JAVASCRIPT LOGIQUE ==================== -->
-<script>
-// Base de données simulée persistante (initialement vide de faux comptes)
-let database = JSON.parse(localStorage.getItem('ff_db_v4')) || [];
-let currentUserId = localStorage.getItem('ff_curr_u_v4') || null;
-let adminClicks = 0;
 
-// Sauvegarde automatique des données
+</div>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+// Base de données locale (avec protection si les données sont corrompues)
+let database = [];
+try {
+    database = JSON.parse(localStorage.getItem('ff_db_v4')) || [];
+} catch (e) {
+    database = [];
+}
+let currentUserId = localStorage.getItem('ff_curr_u_v4');
+if (currentUserId === 'null') currentUserId = null;
+let adminClicks = 0;
+let adLoaded = false;
+
+// Sauvegarde
 function save() {
     localStorage.setItem('ff_db_v4', JSON.stringify(database));
     localStorage.setItem('ff_curr_u_v4', currentUserId);
 }
 
-// Mise à jour complète de l'interface utilisateur
+// Mise à jour de l'interface
 function updateUi() {
     const admSel = document.getElementById('admin-user-select');
     if (admSel) {
         admSel.innerHTML = "";
         database.forEach(u => {
-            let status = u.banned ? " [BANNI]" : "";
-            admSel.innerHTML += `<option value="${u.id}">${u.name} (Pass: ${u.password}) - Diamants: ${u.tokens}${status}</option>`;
+            const opt = document.createElement('option');
+            opt.value = u.id;
+            opt.textContent = `${u.name} (Pass: ${u.password}) - Diamants: ${u.tokens}${u.banned ? " [BANNI]" : ""}`;
+            admSel.appendChild(opt);
         });
     }
 
     if (currentUserId) {
         let user = database.find(u => u.id === currentUserId);
-        
-        // Déconnexion forcée instantanée en cas de bannissement par l'administrateur
+
         if (user && user.banned) {
             currentUserId = null;
             save();
@@ -296,22 +298,22 @@ function updateUi() {
             document.getElementById('auth-page').style.display = 'none';
             document.getElementById('generator-page').style.display = 'block';
             document.getElementById('user-display').innerText = user.name;
-            document.getElementById('token-count').innerHTML = `${user.tokens} 💎`;
+            document.getElementById('token-count').innerText = `${user.tokens} 💎`;
             return;
         }
     }
-    
+
     document.getElementById('auth-page').style.display = 'block';
     document.getElementById('generator-page').style.display = 'none';
 }
 
-// Connexion d'un joueur par vérification textuelle du pseudo
+// Connexion
 function loginUser() {
     let inputName = document.getElementById('user-login-name').value.trim();
     let pass = document.getElementById('user-pass').value;
-    
+
     let user = database.find(u => u.name.toLowerCase() === inputName.toLowerCase());
-    
+
     if (user && user.password === pass) {
         if (user.banned) {
             alert("❌ Votre compte a été banni par un administrateur !");
@@ -326,29 +328,29 @@ function loginUser() {
     }
 }
 
-// Création d'un nouveau profil utilisateur
+// Création de compte
 function createNewAccount() {
     let name = document.getElementById('new-name').value.trim();
     let pass = document.getElementById('new-pass').value.trim();
-    
-    if(!name || !pass) return alert("Remplis ton pseudo et ton mot de passe !");
-    
+
+    if (!name || !pass) return alert("Remplis ton pseudo et ton mot de passe !");
+
     let exists = database.some(u => u.name.toLowerCase() === name.toLowerCase());
     if (exists) return alert("❌ Ce pseudo est déjà utilisé !");
-    
+
     let newId = "u_" + Date.now();
-    database.push({ 
-        "id": newId, 
-        "name": name, 
-        "tokens": 2, 
-        "password": pass, 
+    database.push({
+        "id": newId,
+        "name": name,
+        "tokens": 2,
+        "password": pass,
         "banned": false
     });
-    
+
     currentUserId = newId;
     save(); updateUi();
-    
-    document.getElementById('new-name').value = ""; 
+
+    document.getElementById('new-name').value = "";
     document.getElementById('new-pass').value = "";
     alert(`🎉 Compte "${name}" créé ! Bienvenue sur ton espace.`);
 }
@@ -360,7 +362,7 @@ function logout() {
     document.getElementById('results').style.display = 'none';
 }
 
-// Détection de l'accès secret au panneau d'administration (3 clics sur le titre de la page de connexion)
+// Accès admin (3 clics sur le titre)
 function detectAdminClick() {
     adminClicks++;
     if (adminClicks === 3) {
@@ -372,78 +374,104 @@ function detectAdminClick() {
     }
 }
 
-// Ajout manuel de diamants par l'administrateur
+// Ajout de diamants (admin)
 function addTokens() {
     let id = document.getElementById('admin-user-select').value;
     if (!id) return alert("❌ Aucun compte sélectionné !");
     let amt = parseInt(prompt("Nombre de diamants à attribuer :")) || 0;
     let user = database.find(u => u.id === id);
-    if(user) { 
-        user.tokens += amt; 
-        save(); updateUi(); 
-        alert(`🔋 +${amt} diamants accordés à ${user.name}.`); 
+    if (user) {
+        user.tokens += amt;
+        save(); updateUi();
+        alert(`🔋 +${amt} diamants accordés à ${user.name}.`);
     }
 }
 
-// Bannissement d'un compte
+// Bannir
 function banUser() {
     let id = document.getElementById('admin-user-select').value;
     if (!id) return alert("❌ Aucun compte sélectionné !");
-    
+
     let user = database.find(u => u.id === id);
     if (!user) return;
-    
+
     if (confirm(`⚠️ Es-tu sûr de vouloir bannir définitivement le compte de "${user.name}" ?`)) {
         user.banned = true;
-        save(); updateUi(); 
+        save(); updateUi();
         alert(`🚫 Le compte de "${user.name}" a été banni.`);
     }
 }
 
-// Débannissement d'un compte
+// Débannir
 function unbanUser() {
     let id = document.getElementById('admin-user-select').value;
     if (!id) return alert("❌ Aucun compte sélectionné !");
-    
+
     let user = database.find(u => u.id === id);
     if (!user) return;
-    
+
     if (confirm(`✅ Libérer le compte de "${user.name}" ?`)) {
         user.banned = false;
-        save(); updateUi(); 
+        save(); updateUi();
         alert(`🔓 Le compte de "${user.name}" a été débanni.`);
     }
 }
 
-// Traitement de la récompense publicitaire (Attente de simulation prête pour Monetag)
-function watchAdReward() {
-    let user = database.find(u => u.id === currentUserId);
-    if (!user) return;
-
-    const adBtn = document.getElementById('ad-btn');
-    adBtn.disabled = true;
-    adBtn.innerText = "Chargement de la publicité...";
-
-    alert("La publicité va se lancer. Regardez-la jusqu'au bout pour recevoir votre 💎.");
-    
-    setTimeout(() => {
-        user.tokens += 1;
-        save(); updateUi();
-        
-        adBtn.disabled = false;
-        adBtn.innerText = "Regarder une Publicité (+1 💎)";
-        alert("🎉 Merci d'avoir regardé la publicité ! +1 💎 ajouté à ton compte.");
-    }, 7000);
+// Charge la pub Adsterra (une seule fois par visite)
+function loadAd() {
+    if (adLoaded) return;
+    const s = document.createElement('script');
+    s.setAttribute('data-cfasync', 'false');
+    s.src = 'https://abscloud.org/1/ffb8c50d4b5398102aa4ddbc80970610';
+    document.body.appendChild(s);
+    adLoaded = true;
 }
 
-// Lancement du processus de génération (Coûte 1 Diamant)
+// Génération (coûte 1 diamant), pub à 50 %
 function startGeneration() {
     let user = database.find(u => u.id === currentUserId);
-    if (!user || user.tokens < 1) return alert("❌ Tu n'as plus aucun diamant ! Regarde des pubs ou demande à l'admin.");
+    if (!user || user.tokens < 1) return alert("❌ Tu n'as plus aucun diamant ! Demande à l'admin.");
 
     user.tokens--; save(); updateUi();
-    
+
     document.getElementById('results').style.display = 'none';
+    document.getElementById('gen-btn').disabled = true;
+
+    const loadingBox = document.getElementById('loading');
+    const progressFill = document.getElementById('progress');
+    loadingBox.style.display = 'block';
+    progressFill.style.width = "0%";
+
+    let progress = 0;
+    let timer = setInterval(() => {
+        progress += 1;
+        progressFill.style.width = progress + "%";
+
+        // Pub au milieu de la génération
+        if (progress === 50) loadAd();
+
+        if (progress >= 100) {
+            clearInterval(timer);
+            loadingBox.style.display = 'none';
+            document.getElementById('gen-btn').disabled = false;
+
+            document.getElementById('v-general').innerText = Math.floor(Math.random() * (195 - 175 + 1)) + 175;
+            document.getElementById('v-reddot').innerText = Math.floor(Math.random() * (200 - 145 + 1)) + 145;
+            document.getElementById('v-scope2').innerText = Math.floor(Math.random() * (200 - 145 + 1)) + 145;
+            document.getElementById('v-scope4').innerText = Math.floor(Math.random() * (200 - 145 + 1)) + 145;
+            document.getElementById('v-button').innerText = Math.floor(Math.random() * (58 - 40 + 1)) + 40 + "%";
+            document.getElementById('v-dpi').innerText = Math.floor(Math.random() * (600 - 410 + 1)) + 410;
+
+            document.getElementById('results').style.display = 'block';
+        }
+    }, 300);
+}
+
+// Lancement au chargement
+window.onload = updateUi;
+</script>
+</body>
+</html>ent.getElementById('results').style.display = 'none';
     document.getElementById('gen-btn').disabled = true;
     
     const loadingBox = document.getElementById('loading');
@@ -475,6 +503,12 @@ function startGeneration() {
 }
 
 // Lancement automatique du script au chargement
+window.onload = updateUi;
+</script>
+</div>
+</body>
+</html>
+gement
 window.onload = updateUi;
 </script>
 </div>
